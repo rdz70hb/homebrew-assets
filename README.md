@@ -31,6 +31,11 @@ https://raw.githubusercontent.com/YourUser/homebrew-assets/branch/img/my-image.p
 
 ⚠️ Don’t use the `.../blob/...` URL — it must be the `raw.githubusercontent.com` version (or a `?raw=1` URL) or it won’t work properly.
 
+To convert URL
+1. Replace https://github.com/ with https://raw.githubusercontent.com/
+2. Remove /blob/
+3. Remove ?raw=true
+
 ---
 
 ## 3. Use GitHub images in Homebrewery
