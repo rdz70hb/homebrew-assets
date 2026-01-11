@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="32" viewBox="0 0 900 32">
+  <defs>
+    <linearGradient id="glow" x1="0" x2="1">
+      <stop offset="0%" stop-color="#2ce6ff" stop-opacity="0.25"/>
+      <stop offset="50%" stop-color="#a78bfa" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#2ce6ff" stop-opacity="0.25"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="url(#glow)" stroke-width="2">
+    <path d="M20 16H380" />
+    <path d="M520 16H880" />
+  </g>
+  <g fill="none" stroke="#0b1020" stroke-opacity="0.18" stroke-width="1.5">
+    <path d="M20 18H380" />
+    <path d="M520 18H880" />
+  </g>
+  <g transform="translate(450 16)">
+    <circle r="10" fill="none" stroke="#a78bfa" stroke-opacity="0.25" stroke-width="2"/>
+    <circle r="5.5" fill="none" stroke="#2ce6ff" stroke-opacity="0.25" stroke-width="2"/>
+    <path d="M-16 0H-10M10 0H16M0 -16V-10M0 10V16" stroke="#0b1020" stroke-opacity="0.18" stroke-width="1.5"/>
+    <path d="M-7 -7 L7 7 M7 -7 L-7 7" stroke="#ffd166" stroke-opacity="0.20" stroke-width="1.5"/>
+  </g>
+</svg>
