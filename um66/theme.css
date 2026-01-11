@@ -1,0 +1,285 @@
+/* Astral Codex Theme for Homebrewery v3
+   Space opera vibe with arcane tech accents.
+   Uses only PNG assets so it can load reliably from external hosts.
+
+   Recommended usage (Style editor):
+   @import url("https://rawcdn.githack.com/<USER>/<REPO>/<COMMIT>/um66/theme.css");
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@500;700&family=Cinzel:wght@500;700&display=swap");
+
+/* Theme tokens + asset URLs
+   These asset URLs are RELATIVE so they work when this file is loaded via @import.
+*/
+.brewRenderer{
+  --ac-paper: #f4f7ff;
+  --ac-ink: #0b1020;
+
+  --ac-cyan: #2ce6ff;
+  --ac-violet: #a78bfa;
+  --ac-gold: #ffd166;
+
+  --ac-line: rgba(11,16,32,0.18);
+  --ac-soft: rgba(11,16,32,0.08);
+
+  --ac-cyan-soft: rgba(44,230,255,0.12);
+  --ac-violet-soft: rgba(167,139,250,0.12);
+  --ac-gold-soft: rgba(255,209,102,0.12);
+
+  --ac-radius: 10px;
+
+  --ac-bg-pattern: url("./assets/bg_pattern.png");
+  --ac-bg-watermark: url("./assets/bg_watermark.png");
+  --ac-divider: url("./assets/divider.png");
+  --ac-page-plate: url("./assets/page_plate.png");
+
+  --ac-corner-tl: url("./assets/corner_tl.png");
+  --ac-corner-tr: url("./assets/corner_tr.png");
+  --ac-corner-bl: url("./assets/corner_bl.png");
+  --ac-corner-br: url("./assets/corner_br.png");
+}
+
+/* Page base
+   V3 renderer variants:
+   - Some builds use <div class="page"><div class="phb">...</div></div>
+   - Others use <div class="phb page">...</div>
+   This targets both.
+*/
+.brewRenderer :is(.page, .phb.page){
+  color: var(--ac-ink);
+  background-color: var(--ac-paper);
+  position: relative;
+  isolation: isolate;
+}
+
+/* Ensure page content sits above the background layer */
+.brewRenderer :is(.page, .phb.page) > *{
+  position: relative;
+  z-index: 1;
+}
+
+/* Background layer */
+.brewRenderer :is(.page, .phb.page)::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background-image:
+    var(--ac-corner-tl),
+    var(--ac-corner-tr),
+    var(--ac-corner-bl),
+    var(--ac-corner-br),
+    var(--ac-bg-watermark),
+    var(--ac-bg-pattern);
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+  background-size:
+    120px 120px,
+    120px 120px,
+    120px 120px,
+    120px 120px,
+    560px 560px,
+    260px 260px;
+  background-position:
+    0 0,
+    100% 0,
+    0 100%,
+    100% 100%,
+    50% 52%,
+    0 0;
+}
+
+/* Main text container */
+.brewRenderer :is(.page .phb, .phb.page){
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.brewRenderer :is(.page .phb, .phb.page) p,
+.brewRenderer :is(.page .phb, .phb.page) li{
+  font-size: 10.7pt;
+  line-height: 1.55;
+}
+
+.brewRenderer :is(.page .phb, .phb.page) strong{ font-weight: 700; }
+.brewRenderer :is(.page .phb, .phb.page) em{ font-style: italic; }
+
+/* Headings */
+.brewRenderer :is(.page .phb, .phb.page) h1,
+.brewRenderer :is(.page .phb, .phb.page) h2,
+.brewRenderer :is(.page .phb, .phb.page) h3{
+  font-family: "Orbitron", "Cinzel", serif;
+  letter-spacing: 0.04em;
+  color: var(--ac-ink);
+}
+
+.brewRenderer :is(.page .phb, .phb.page) h1{
+  text-transform: uppercase;
+  font-size: 30px;
+  margin-bottom: 6px;
+}
+
+.brewRenderer :is(.page .phb, .phb.page) h2{
+  font-size: 20px;
+  border-bottom: 1px solid var(--ac-line);
+  padding-bottom: 4px;
+}
+
+.brewRenderer :is(.page .phb, .phb.page) h3{
+  font-size: 15px;
+  letter-spacing: 0.03em;
+}
+
+.brewRenderer :is(.page .phb, .phb.page) h1 + p::first-letter{
+  float: left;
+  font-family: "Cinzel", serif;
+  font-weight: 700;
+  font-size: 3.2em;
+  line-height: 0.9;
+  padding-right: 6px;
+  padding-top: 2px;
+  color: var(--ac-violet);
+  text-shadow: 0 0 12px rgba(167,139,250,0.32);
+}
+
+/* Links */
+.brewRenderer :is(.page .phb, .phb.page) a{
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(44,230,255,0.35);
+}
+.brewRenderer :is(.page .phb, .phb.page) a:hover{
+  border-bottom-color: rgba(44,230,255,0.75);
+}
+
+/* Horizontal rules */
+.brewRenderer :is(.page .phb, .phb.page) hr{
+  border: none;
+  height: 18px;
+  background-image: var(--ac-divider);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 520px 18px;
+  margin: 10px 0 12px;
+}
+
+/* Tables */
+.brewRenderer :is(.page .phb, .phb.page) table{
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0 14px;
+  font-size: 10.3pt;
+}
+.brewRenderer :is(.page .phb, .phb.page) table th{
+  background: linear-gradient(90deg, var(--ac-cyan-soft), transparent);
+  border: 1px solid var(--ac-line);
+  padding: 6px 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.brewRenderer :is(.page .phb, .phb.page) table td{
+  border: 1px solid var(--ac-line);
+  padding: 6px 8px;
+}
+.brewRenderer :is(.page .phb, .phb.page) table tr:nth-child(even) td{
+  background: rgba(11,16,32,0.03);
+}
+
+/* Notes
+   Use with {note,science ...} or {note,mystic ...} or plain {note ...}.
+*/
+.brewRenderer :is(.page .phb, .phb.page) .note{
+  border: 1px solid var(--ac-line);
+  border-radius: var(--ac-radius);
+  padding: 10px 12px;
+  margin: 10px 0 12px;
+  background: rgba(11,16,32,0.02);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.35) inset;
+}
+.brewRenderer :is(.page .phb, .phb.page) .note.science{
+  background: linear-gradient(180deg, var(--ac-cyan-soft), rgba(11,16,32,0.01));
+  border-color: rgba(44,230,255,0.35);
+}
+.brewRenderer :is(.page .phb, .phb.page) .note.mystic{
+  background: linear-gradient(180deg, var(--ac-violet-soft), rgba(11,16,32,0.01));
+  border-color: rgba(167,139,250,0.35);
+}
+.brewRenderer :is(.page .phb, .phb.page) .note.relic{
+  background: linear-gradient(180deg, var(--ac-gold-soft), rgba(11,16,32,0.01));
+  border-color: rgba(255,209,102,0.45);
+}
+
+/* Descriptive blocks */
+.brewRenderer :is(.page .phb, .phb.page) .descriptive{
+  border-radius: var(--ac-radius);
+  border: 1px solid var(--ac-line);
+  padding: 10px 12px;
+  background: rgba(255,255,255,0.45);
+}
+
+/* Monster blocks: keep readable, add subtle plating on framed ones */
+.brewRenderer :is(.page .phb, .phb.page) .monster{ border-color: var(--ac-line); }
+.brewRenderer :is(.page .phb, .phb.page) .monster.frame{
+  border-radius: var(--ac-radius);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.35) inset;
+}
+
+/* Footer elements */
+.brewRenderer :is(.page, .phb.page) .footnote{
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(11,16,32,0.65);
+}
+
+.brewRenderer :is(.page, .phb.page) .pageNumber{
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 0.08em;
+  color: rgba(11,16,32,0.85);
+  padding: 6px 10px;
+  background-image: var(--ac-page-plate);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  min-width: 44px;
+  text-align: center;
+}
+
+/* Cover pages (built in snippets)
+   {frontCover} / {insideCover} / {partCover} / {backCover}
+*/
+.brewRenderer :is(.page, .phb.page):has(.frontCover){
+  background-color: #070b18;
+  color: var(--ac-paper);
+}
+
+.brewRenderer :is(.page, .phb.page):has(.frontCover)::before{
+  background-image:
+    radial-gradient(circle at 25% 22%, rgba(44,230,255,0.18), transparent 45%),
+    radial-gradient(circle at 70% 60%, rgba(167,139,250,0.18), transparent 55%),
+    var(--ac-bg-pattern);
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-size: cover, cover, 300px 300px;
+  background-position: center, center, 0 0;
+}
+
+.brewRenderer :is(.page, .phb.page):has(.frontCover) :is(h1,h2,h3,.footnote,.banner){
+  color: var(--ac-paper);
+  text-shadow: 0 0 18px rgba(44,230,255,0.22), 0 0 22px rgba(167,139,250,0.18);
+}
+
+.brewRenderer :is(.page, .phb.page):has(.frontCover) .pageNumber{
+  display: none;
+}
+
+.brewRenderer :is(.page, .phb.page):has(.insideCover){
+  background: linear-gradient(180deg, rgba(44,230,255,0.06), rgba(167,139,250,0.05));
+}
+
+.brewRenderer :is(.page, .phb.page):has(.partCover) h1{
+  letter-spacing: 0.08em;
+}
+
+.brewRenderer :is(.page, .phb.page):has(.backCover){
+  background: linear-gradient(180deg, rgba(255,209,102,0.10), rgba(11,16,32,0.02));
+}
