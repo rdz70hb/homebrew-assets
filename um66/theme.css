@@ -283,3 +283,43 @@
 .brewRenderer :is(.page, .phb.page):has(.backCover){
   background: linear-gradient(180deg, rgba(255,209,102,0.10), rgba(11,16,32,0.02));
 }
+/* Pin footnote and auto page number to the bottom */
+.brewRenderer :is(.page, .phb.page){
+  position: relative;
+}
+
+/* Make sure the content wrapper fills the full page height so bottom positioning has a real “bottom” */
+.brewRenderer .page .phb{
+  min-height: 100%;
+}
+
+/* Position footer elements */
+.brewRenderer :is(.page, .phb.page) .pageNumber,
+.brewRenderer :is(.page, .phb.page) .footnote{
+  position: absolute;
+  bottom: 24px;
+  z-index: 5;
+}
+
+/* Right page default */
+.brewRenderer :is(.page, .phb.page) .pageNumber{
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
+}
+.brewRenderer :is(.page, .phb.page) .footnote{
+  right: 84px;
+}
+
+/* Even pages swap to the left side */
+.brewRenderer :is(.page, .phb.page) .pageNumber{
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
+}
+.brewRenderer .page:nth-of-type(even) .footnote{
+  left: 84px;
+  right: auto;
+}
